@@ -1,9 +1,10 @@
 package logic
 
 import (
-	"tcp/cache"
-	logger "tcp/log"
-	"tcp/model"
+	logger "github.com/safinst/go_tls_server/log"
+
+	"github.com/safinst/go_tls_server/cache"
+	"github.com/safinst/go_tls_server/model"
 
 	"google.golang.org/protobuf/proto"
 )

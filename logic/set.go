@@ -1,13 +1,15 @@
 package logic
 
 import (
-	"tcp/cache"
-	"tcp/model"
 	"time"
+
+	"github.com/safinst/go_tls_server/cache"
+
+	"github.com/safinst/go_tls_server/model"
 
 	"google.golang.org/protobuf/proto"
 
-	logger "tcp/log"
+	logger "github.com/safinst/go_tls_server/log"
 )
 
 type SetHandler struct {

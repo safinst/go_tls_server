@@ -11,13 +11,13 @@ import (
 	"sync/atomic"
 	"time"
 
-	logger "tcp/log"
+	logger "github.com/safinst/go_tls_server/log"
 
 	"net"
 
-	"tcp/logic"
-	"tcp/model"
-	"tcp/util"
+	"github.com/safinst/go_tls_server/logic"
+	"github.com/safinst/go_tls_server/model"
+	"github.com/safinst/go_tls_server/util"
 
 	"google.golang.org/protobuf/proto"
 

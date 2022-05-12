@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-option go_package = "../model";
+option go_package = "github.com/safinst/go_tls_server/model";
 
 package rw;
 

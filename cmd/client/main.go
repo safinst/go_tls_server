@@ -10,11 +10,12 @@ import (
 	"os"
 	"strconv"
 	"sync"
-	"tcp/model"
-	"tcp/util"
 	"time"
 
-	logger "tcp/log"
+	"github.com/safinst/go_tls_server/model"
+	"github.com/safinst/go_tls_server/util"
+
+	logger "github.com/safinst/go_tls_server/log"
 
 	"github.com/lucasepe/codename"
 	"google.golang.org/protobuf/proto"

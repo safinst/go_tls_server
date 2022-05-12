@@ -1,4 +1,4 @@
-module tcp
+module github.com/safinst/go_tls_server
 
 go 1.18
 

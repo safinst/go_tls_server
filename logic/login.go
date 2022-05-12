@@ -1,11 +1,13 @@
 package logic
 
 import (
-	"tcp/db"
-	_ "tcp/log"
-	logger "tcp/log"
-	"tcp/model"
 	"time"
+
+	logger "github.com/safinst/go_tls_server/log"
+
+	"github.com/safinst/go_tls_server/model"
+
+	"github.com/safinst/go_tls_server/db"
 
 	"google.golang.org/protobuf/proto"
 )
