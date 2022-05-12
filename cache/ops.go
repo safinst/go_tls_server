@@ -12,6 +12,7 @@ func (rc *RedisClient) Close() error {
 	return rc.Client.Close()
 }
 
+// produce key
 func MakeKey(prefix string, key interface{}) string {
 	return fmt.Sprintf("%s%v", prefix, key)
 }
