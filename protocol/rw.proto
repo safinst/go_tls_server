@@ -1,0 +1,78 @@
+syntax = "proto3";
+
+option go_package = "../model";
+
+package rw;
+
+enum Cmd
+{
+    LOGIN = 0; 
+    GET = 1;
+    SET = 2;
+}
+
+enum RetCode 
+{
+    SUCCESS = 0;
+    ERR_TOKEN = -1;
+    ERR_FREQUENCY = -2;
+    ERR_REQ_PARA = -3;
+}
+
+message Request 
+{
+    optional uint64 seq = 1;
+    optional Cmd cmd = 2;
+    optional bytes buf = 3;
+}
+
+message Response
+{
+    optional uint64 seq = 1;
+    optional Cmd cmd = 2;
+    optional bytes buf = 3;
+}
+
+
+message CommonHead
+{
+    optional string     name = 1;
+    optional string     token = 2;
+}
+message GetRequest
+{
+    optional CommonHead    head = 1;
+    optional string        key = 2;
+}
+
+message GetResponse
+{
+    optional int32          ret = 1;
+    optional string         val = 2;
+}
+
+message SetRequest
+{
+    optional CommonHead     head = 1;
+    optional string         key = 2;
+    optional string         val = 3;         
+}
+
+message SetResponse
+{
+    optional int32 ret = 1;
+}
+
+message LoginRequest
+{
+    optional string        name = 1;
+    optional string        key = 2;
+    optional uint32        readTimes = 3;
+    optional uint32        writeTimes = 4;
+}
+
+message LoginResponse
+{
+    optional int32          ret = 1;
+    optional string         token = 2;
+}
