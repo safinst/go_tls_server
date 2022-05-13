@@ -1,8 +1,6 @@
 package logic
 
 import (
-	"time"
-
 	"github.com/safinst/go_tls_server/cache"
 
 	"github.com/safinst/go_tls_server/model"
@@ -16,6 +14,11 @@ type SetHandler struct {
 	Name string
 }
 
+/*
+	process set request
+	first check token && limit first
+	then store data to redis
+*/
 func (h *SetHandler) Process(p *model.Request) *model.Response {
 	rsp := &model.SetResponse{
 		Ret: proto.Int32(model.RetCode_value["SUCCESS"]),
@@ -36,13 +39,13 @@ func (h *SetHandler) Process(p *model.Request) *model.Response {
 		return fillResponse(rsp, p.GetCmd().Enum())
 	}
 	key := cache.MakeKey(prefix, req.GetKey())
-	t1 := time.Now().UnixNano()
+	//t1 := time.Now().UnixNano()
 	err = cache.Client().SetExpire(key, 10, req.GetVal())
-	t2 := time.Now().UnixNano()
+	//t2 := time.Now().UnixNano()
 	if err != nil {
 		logger.Errlog.Errorln(" get redis error:", err.Error())
 	} else {
-		logger.Datalog.Infoln("redis succ cost time ", t2-t1)
+		//logger.Datalog.Infoln("redis succ cost time ", t2-t1)
 	}
 	return fillResponse(rsp, p.GetCmd().Enum())
 }

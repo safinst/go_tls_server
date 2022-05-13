@@ -13,6 +13,11 @@ type GetHandler struct {
 	Name string
 }
 
+/*
+	process get request
+	first check token && limit first
+	then get data from redis
+*/
 func (handle *GetHandler) Process(p *model.Request) *model.Response {
 	rsp := &model.GetResponse{
 		Ret: proto.Int32(model.RetCode_value["SUCCESS"]),

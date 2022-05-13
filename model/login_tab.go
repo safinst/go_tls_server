@@ -14,5 +14,5 @@ func (*LoginTab) Table() string {
 }
 
 func (*LoginTab) DB() string {
-	return "shopee_partner_admin_db"
+	return "db"
 }

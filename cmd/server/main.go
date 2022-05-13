@@ -45,6 +45,7 @@ var (
 	endtime   int64 = 0
 )
 
+// handle request
 func handleConn(c net.Conn) {
 	defer c.Close()
 	rbuf := bufio.NewReader(c)
@@ -128,6 +129,7 @@ func fillConfig() (*tls.Config, error) {
 	}, nil
 }
 
+// to do add prometheus metrics
 func statistic() {
 	endtime = time.Now().Unix()
 	totalreq := getreqcounter + setreqcounter + loginreqcounter - lastgetreqcounter - lastsetreqcounter - lastloginreqcounter

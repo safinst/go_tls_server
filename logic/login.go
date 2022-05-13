@@ -16,6 +16,10 @@ type LoginHandler struct {
 	Name string
 }
 
+/*
+	process login request
+	store data to mysql
+*/
 func (h *LoginHandler) Process(p *model.Request) *model.Response {
 	rsp := &model.LoginResponse{
 		Ret: proto.Int32(model.RetCode_value["SUCCESS"]),

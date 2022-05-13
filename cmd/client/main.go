@@ -21,6 +21,8 @@ import (
 	"google.golang.org/protobuf/proto"
 )
 
+// store keys produced by tools generatkey.go
+// in order get && set have the same key
 var keys = make([]string, 10000)
 
 func init() {
@@ -65,6 +67,7 @@ func fillConfig() (*tls.Config, error) {
 	}, nil
 }
 
+// connect to server
 func startNewConn() {
 	defer func() {
 		if err := recover(); err != nil {
@@ -132,6 +135,10 @@ func startNewConn() {
 	}
 }
 
+/*
+	fillrequest
+	codename produce rand string
+*/
 func fillRequest() *model.Request {
 	var buf []byte
 	var err error
@@ -144,6 +151,8 @@ func fillRequest() *model.Request {
 		reqtype = "get"
 	} else if i > 80 && i <= 95 {
 		reqtype = "set"
+	} else {
+		reqtype = "login"
 	}
 	name := strconv.Itoa(i)
 	key := name
@@ -155,7 +164,7 @@ func fillRequest() *model.Request {
 	}
 	switch reqtype {
 	case "get":
-		if i > len(keys) {
+		if i >= len(keys) {
 			key := codename.Generate(rng, 1000)
 			getReq := &model.GetRequest{
 				Key: proto.String(key),
@@ -177,7 +186,7 @@ func fillRequest() *model.Request {
 		}
 		cmd = model.Cmd_GET.Enum()
 	case "set":
-		if i > len(keys) {
+		if i >= len(keys) {
 			key := codename.Generate(rng, 1000)
 			val := codename.Generate(rng, 1000)
 			setReq := &model.SetRequest{
@@ -221,10 +230,13 @@ func fillRequest() *model.Request {
 	}
 }
 
+var CONCURRENY_NUM = 100
+
+// to do CONCURRENY_NUM read from command line
 func main() {
 	var wg sync.WaitGroup
-	wg.Add(200)
-	for i := 0; i < 200; i++ {
+	wg.Add(CONCURRENY_NUM)
+	for i := 0; i < CONCURRENY_NUM; i++ {
 		go func() {
 			startNewConn()
 			wg.Done()
