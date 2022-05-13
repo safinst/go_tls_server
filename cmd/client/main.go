@@ -76,7 +76,7 @@ func startNewConn() {
 		logger.Errlog.Errorln("get config err:", err.Error())
 		return
 	}
-	conn, err := tls.Dial("tcp", "127.0.0.1:10000", conf)
+	conn, err := tls.Dial("tcp", "127.0.0.1:443", conf)
 	if err != nil {
 		logger.Errlog.Errorln("dial err:", err.Error())
 		return

@@ -170,7 +170,7 @@ func main() {
 		logger.Errlog.Errorln("fill config failed ", err.Error())
 		return
 	}
-	ln, err := tls.Listen("tcp", ":10000", config)
+	ln, err := tls.Listen("tcp", ":443", config)
 	if err != nil {
 		logger.Errlog.Errorln(err.Error())
 		return
